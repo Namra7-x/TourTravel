@@ -1,0 +1,105 @@
+.navbar-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    position: fixed; /* Fixed is better for modern floating navs */
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-pill {
+    width: 95%;
+    max-width: 1200px;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.8); /* Glassmorphism */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 100px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Subtle scale effect when scrolling might be added via JS, 
+   but this base look is already premium */
+
+.navbar-logo img {
+    height: 28px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover img {
+    transform: scale(1.05);
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Modern underline hover effect */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #558ffc;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.mobile-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #333;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+@media (max-width: 992px) {
+    .navbar-menu { gap: 20px; }
+}
+
+@media (max-width: 768px) {
+    .navbar-menu, .navbar-cta { display: none; }
+    .mobile-toggle { display: block; }
+    
+    .navbar-pill {
+        width: 90%;
+        height: 56px;
+    }
+}

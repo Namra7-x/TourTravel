@@ -1,0 +1,251 @@
+﻿[
+    {
+        "id":  1,
+        "highlights":  [
+                           "Island hopping to Phi Phi Islands",
+                           "Beachfront luxury stay",
+                           "Elephant sanctuary visit",
+                           "Authentic Thai cooking class"
+                       ],
+        "inclusions":  [
+                           "4-star hotel beach resort",
+                           "Daily breakfast and lunch",
+                           "Round-trip boat transfers",
+                           "Guided island tours"
+                       ],
+        "location":  "Phuket, Thailand",
+        "pricePerPerson":  1200,
+        "name":  "Phuket, Thailand",
+        "description":  "Experience the pristine beaches and vibrant culture of Phuket. Stay in luxury seaside resorts and explore hidden lagoons.",
+        "duration":  "9 - 12 Days",
+        "reviews":  324,
+        "image":  "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format\u0026fit=crop\u0026w=1200\u0026q=80",
+        "rating":  4.8,
+        "maxPeople":  10,
+        "tag":  "Tropical Paradise"
+    },
+    {
+        "id":  2,
+        "highlights":  [
+                           "Sunset views in Oia \u0026 caldera-side stays",
+                           "Luxury catamaran cruise with BBQ \u0026 hot springs",
+                           "Visit Akrotiri ruins \u0026 unique red/black beaches",
+                           "Wine tasting \u0026 guided island tours"
+                       ],
+        "inclusions":  [
+                           "5-star stays, breakfast \u0026 select meals",
+                           "Private transfers \u0026 guided tours",
+                           "Sunset cruise \u0026 volcano experience"
+                       ],
+        "location":  "Santorini, Greece",
+        "pricePerPerson":  1800,
+        "name":  "Santorini, Greece",
+        "description":  "Enjoy a romantic luxury getaway to Santorini, exploring Fira, Oia, Imerovigli, and Akrotiri. Stay in 5-star cliffside hotels with stunning caldera views.",
+        "duration":  "5 - 8 Days",
+        "reviews":  512,
+        "image":  "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format\u0026fit=crop\u0026w=1200\u0026q=80",
+        "rating":  4.9,
+        "maxPeople":  14,
+        "tag":  "Perfect for Couples"
+    },
+    {
+        "id":  3,
+        "highlights":  [
+                           "Visit Ubud Rice Terraces",
+                           "Yoga and meditation retreat",
+                           "Sacred Monkey Forest exploration",
+                           "Surfing at Uluwatu"
+                       ],
+        "inclusions":  [
+                           "Luxury villa with private pool",
+                           "Cultural dinner shows",
+                           "Private driver for day trips",
+                           "Spiritual temple tour"
+                       ],
+        "location":  "Bali, Indonesia",
+        "pricePerPerson":  1800,
+        "name":  "Bali, Indonesia",
+        "description":  "Immerse yourself in the tropical paradise of Bali. Discover lush rice terraces, ancient temples, and serene beaches.",
+        "duration":  "9 - 12 Days",
+        "reviews":  445,
+        "image":  "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format\u0026fit=crop\u0026w=1200\u0026q=80",
+        "rating":  4.7,
+        "maxPeople":  15,
+        "tag":  "Spiritual Journey"
+    },
+    {
+        "id":  4,
+        "highlights":  [
+                           "Private Eiffel Tower dinner",
+                           "Louvre Museum guided tour",
+                           "Seine River sunset cruise",
+                           "Coffee and pastries in Le Marais"
+                       ],
+        "inclusions":  [
+                           "Classic Parisian boutique hotel",
+                           "Museum Pass (All access)",
+                           "Luxury airport transfers",
+                           "Gourmet wine tasting"
+                       ],
+        "location":  "Paris, France",
+        "pricePerPerson":  2100,
+        "name":  "Paris, France",
+        "description":  "The city of love awaits with iconic landmarks and fine dining. Experience the art and history of the world\u0027s most romantic city.",
+        "duration":  "10 - 14 Days",
+        "reviews":  678,
+        "image":  "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format\u0026fit=crop\u0026w=1200\u0026q=80",
+        "rating":  4.9,
+        "maxPeople":  12,
+        "tag":  "Art \u0026 History"
+    },
+    {
+        "id":  5,
+        "highlights":  [
+                           "Shibuya Crossing experience",
+                           "Sushi making workshop",
+                           "Mount Fuji day trip",
+                           "Harajuku fashion walk"
+                       ],
+        "inclusions":  [
+                           "Modern high-rise hotel stay",
+                           "Japan Rail Pass included",
+                           "Local food tour guide",
+                           "Tea ceremony experience"
+                       ],
+        "location":  "Tokyo, Japan",
+        "pricePerPerson":  1950,
+        "name":  "Tokyo, Japan",
+        "description":  "Explore the blend of ancient tradition and cutting-edge technology. From neon streets to peaceful shrines.",
+        "duration":  "10 - 14 Days",
+        "reviews":  556,
+        "image":  "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format\u0026fit=crop\u0026w=1200\u0026q=80",
+        "rating":  4.8,
+        "maxPeople":  16,
+        "tag":  "Modern \u0026 Tradition"
+    },
+    {
+        "id":  6,
+        "highlights":  [
+                           "Broadway musical show",
+                           "Top of the Rock observation",
+                           "Central Park bike tour",
+                           "Statue of Liberty cruise"
+                       ],
+        "inclusions":  [
+                           "Manhattan luxury hotel",
+                           "CityPass for top attractions",
+                           "Private walking tour",
+                           "Rooftop lounge access"
+                       ],
+        "location":  "New York, USA",
+        "pricePerPerson":  1650,
+        "name":  "New York, USA",
+        "description":  "Experience the energy and diversity of the Big Apple. The city that never sleeps has something for everyone.",
+        "duration":  "7 - 10 Days",
+        "reviews":  723,
+        "image":  "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format\u0026fit=crop\u0026w=1200\u0026q=80",
+        "rating":  4.7,
+        "maxPeople":  18,
+        "tag":  "The Big Apple"
+    },
+    {
+        "id":  7,
+        "highlights":  [
+                           "Burj Khalifa sunset dinner",
+                           "Desert Safari with BBQ",
+                           "Dubai Mall shopping experience",
+                           "Luxury yacht cruise"
+                       ],
+        "inclusions":  [
+                           "7-star hotel experience",
+                           "VIP airport reception",
+                           "Sand boarding equipment",
+                           "Private city guide"
+                       ],
+        "location":  "Dubai, UAE",
+        "pricePerPerson":  1750,
+        "name":  "Dubai, UAE",
+        "description":  "Luxury and modern marvels in the heart of the desert. High-end shopping and futuristic architecture.",
+        "duration":  "5 - 8 Days",
+        "reviews":  489,
+        "image":  "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format\u0026fit=crop\u0026w=1200\u0026q=80",
+        "rating":  4.6,
+        "maxPeople":  14,
+        "tag":  "Modern Desert Luxury"
+    },
+    {
+        "id":  8,
+        "highlights":  [
+                           "Sagrada Familia private tour",
+                           "Gothic Quarter walking tour",
+                           "Paella cooking class",
+                           "Park Guell sunrise visit"
+                       ],
+        "inclusions":  [
+                           "Art-deco hotel in El Born",
+                           "Tapas and Wine tasting tour",
+                           "Public transport pass",
+                           "Skip-the-line group entry"
+                       ],
+        "location":  "Barcelona, Spain",
+        "pricePerPerson":  1600,
+        "name":  "Barcelona, Spain",
+        "description":  "Gaudí\u0027s masterpieces and Mediterranean charm. Vibrant street life and delicious tapas await you.",
+        "duration":  "8 - 11 Days",
+        "reviews":  567,
+        "image":  "https://wallpaperaccess.com/full/450524.jpg",
+        "rating":  4.8,
+        "maxPeople":  13,
+        "tag":  "Mediterranean Art"
+    },
+    {
+        "id":  9,
+        "highlights":  [
+                           "Snorkeling with manta rays",
+                           "Private underwater dinner",
+                           "Luxury spa treatments",
+                           "Seaplane scenic flight"
+                       ],
+        "inclusions":  [
+                           "All-inclusive water villa",
+                           "Seaplane transfers",
+                           "Daily water sports access",
+                           "Personal island butler"
+                       ],
+        "location":  "Maldives",
+        "pricePerPerson":  2400,
+        "name":  "Maldives",
+        "description":  "Overwater bungalows and crystal clear lagoons. The ultimate destination for seclusion and relaxation.",
+        "duration":  "6 - 9 Days",
+        "reviews":  612,
+        "image":  "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format\u0026fit=crop\u0026w=1200\u0026q=80",
+        "rating":  4.9,
+        "maxPeople":  8,
+        "tag":  "Ultimate Seclusion"
+    },
+    {
+        "id":  10,
+        "highlights":  [
+                           "Blue Lagoon geothermal spa",
+                           "Golden Circle private tour",
+                           "Northern Lights hunt",
+                           "Glacier hiking adventure"
+                       ],
+        "inclusions":  [
+                           "Eco-friendly luxury lodges",
+                           "4x4 vehicle rental with GPS",
+                           "Guided ice cave tour",
+                           "Thermal outdoor clothing"
+                       ],
+        "location":  "Iceland",
+        "pricePerPerson":  2000,
+        "name":  "Iceland",
+        "description":  "Witness glaciers, waterfalls, and the Northern Lights. A land of fire and ice that will take your breath away.",
+        "duration":  "8 - 12 Days",
+        "reviews":  434,
+        "image":  "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format\u0026fit=crop\u0026w=1200\u0026q=80",
+        "rating":  4.8,
+        "maxPeople":  11,
+        "tag":  "Nature \u0026 Adventure"
+    }
+]
