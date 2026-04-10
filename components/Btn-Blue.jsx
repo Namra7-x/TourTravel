@@ -24,7 +24,7 @@ const BtnBlue = ({
         <button
             type={type}
             className={[
-                "rounded-full cursor-pointer font-medium transition-all duration-300",
+                "inline-flex items-center justify-center rounded-full cursor-pointer font-medium text-center whitespace-nowrap transition-all duration-300",
                 SIZE_CLASSES[size] || SIZE_CLASSES.md,
                 VARIANT_CLASSES[variant] || VARIANT_CLASSES.primary,
                 className,

@@ -1,10 +1,10 @@
 const HomeFooter = () => {
     return (
         <>
-            <footer className="bg-[#1a1a1a] text-white py-20">
-                <div className="px-20 max-w-7xl mx-auto">
+            <footer className="bg-[#1a1a1a] text-white py-16 sm:py-20">
+                <div className="px-4 sm:px-8 lg:px-20 max-w-7xl mx-auto">
                     {/* Main Footer Content */}
-                    <div className="grid grid-cols-4 gap-20 mb-16">
+                    <div className="grid gap-12 mb-12 sm:mb-16 md:grid-cols-2 xl:grid-cols-4 md:gap-10 xl:gap-20">
                         {/* Menu Bar */}
                         <div>
                             <h3 className="text-lg font-medium mb-6">Menu Bar</h3>
@@ -50,8 +50,8 @@ const HomeFooter = () => {
                     <div className="border-t border-gray-700 my-12"></div>
 
                     {/* Bottom Footer */}
-                    <div className="flex justify-between items-center text-gray-400 font-light text-base">
-                        <div className="space-x-12">
+                    <div className="flex flex-col gap-4 text-gray-400 font-light text-base md:flex-row md:justify-between md:items-center">
+                        <div className="flex flex-col gap-3 sm:flex-row sm:gap-8">
                             <a href="#privacy" className="hover:text-white transition">Privacy Policy</a>
                             <a href="#terms" className="hover:text-white transition">Terms and Conditions</a>
                         </div>

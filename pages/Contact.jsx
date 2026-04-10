@@ -22,7 +22,7 @@ const Contact = () => {
     return (
         <div className="overflow-hidden">
             {/* Header Section */}
-            <section className="pt-20 pb-20 px-20">
+            <section className="pt-20 pb-16 px-4 sm:px-8 lg:px-20">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -35,13 +35,13 @@ const Contact = () => {
                 >
                     <motion.h1
                         variants={fadeInUp}
-                        className="text-6xl font-medium text-[#161618] mb-6"
+                        className="text-4xl sm:text-5xl lg:text-6xl font-medium text-[#161618] mb-6 px-4"
                     >
                         Get in Touch
                     </motion.h1>
                     <motion.p
                         variants={fadeInUp}
-                        className="text-[#56575c] text-lg font-light leading-relaxed max-w-2xl mx-auto"
+                        className="text-[#56575c] text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto px-4"
                     >
                         Need help or have a request? Our team is here to answer your questions and make your travel smooth. Contact us today!
                     </motion.p>
@@ -49,16 +49,16 @@ const Contact = () => {
             </section>
 
             {/* Contact Content Section */}
-            <section className="py-20 px-20">
+            <section className="py-16 sm:py-20 px-4 sm:px-8 lg:px-20">
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-2 gap-8 items-start">
+                    <div className="grid gap-8 items-start lg:grid-cols-2">
                         {/* Left Box - Video + Info */}
                         <motion.div
                             initial={{ opacity: 0, x: -40 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
-                            className="relative rounded-3xl overflow-hidden h-[520px]"
+                            className="relative rounded-3xl overflow-hidden min-h-[420px] sm:min-h-[520px]"
                         >
                             {/* Background Video */}
                             <video
@@ -113,7 +113,7 @@ const Contact = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
-                            className="bg-[#f0f2f7] rounded-3xl p-8"
+                            className="bg-[#f0f2f7] rounded-3xl p-5 sm:p-8"
                         >
                             <form className="space-y-5">
                                 {/* Name */}

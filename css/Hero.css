@@ -26,7 +26,7 @@
     position: relative;
     z-index: 2;
     text-align: center;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     margin-top: 2rem;
 }
 
@@ -120,4 +120,56 @@
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        min-height: 100svh;
+        height: auto;
+        padding: 8rem 0 6rem;
+    }
+
+    .hero-content {
+        max-width: 760px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 7rem 0 5rem;
+    }
+
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    .hero-tag {
+        letter-spacing: 0.18em;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: min(100%, 320px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions > * {
+        width: 100%;
+    }
+
+    .scroll-indicator {
+        bottom: 1.25rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero-title {
+        font-size: clamp(2.5rem, 15vw, 3.4rem);
+    }
+
+    .hero-desc {
+        font-size: 0.98rem;
+        margin-top: 1.5rem;
+    }
 }

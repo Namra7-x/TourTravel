@@ -76,7 +76,7 @@ const FAQSection = () => {
     ];
 
     return (
-        <section className="py-20 px-20">
+        <section className="py-16 sm:py-20 px-4 sm:px-8 lg:px-20">
             <div className="max-w-5xl mx-auto">
                 <motion.div
                     initial="hidden"
@@ -93,7 +93,7 @@ const FAQSection = () => {
                             hidden: { opacity: 0, y: 30 },
                             visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
                         }}
-                        className="text-5xl font-medium text-[#161618] mb-4"
+                        className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#161618] mb-4 px-4"
                     >
                         Everything You Need to Know
                     </motion.h2>
@@ -102,13 +102,13 @@ const FAQSection = () => {
                             hidden: { opacity: 0, y: 30 },
                             visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.1 } }
                         }}
-                        className="text-[#56575c] text-lg font-light max-w-3xl mx-auto"
+                        className="text-[#56575c] text-base sm:text-lg font-light max-w-3xl mx-auto px-4"
                     >
                         Whether you're curious about our services, cancellation policies, or travel packages, our FAQ section has got you covered. Find quick and reliable answers to make your plan.
                     </motion.p>
                 </motion.div>
 
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid gap-5 lg:grid-cols-2">
                     <div className="space-y-5">
                         {faqs.slice(0, 3).map((faq, index) => (
                             <motion.div

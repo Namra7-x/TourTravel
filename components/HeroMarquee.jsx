@@ -1,4 +1,6 @@
 import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { fadeInUp } from '../utils/animationVariants';
 
 const HeroMarquee = () => {
     const trackRef = useRef(null);
@@ -97,7 +99,13 @@ const HeroMarquee = () => {
     }, []);
 
     return (
-        <section className="overflow-hidden py-16">
+        <motion.section
+            className="overflow-hidden py-12 sm:py-16"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+        >
             <div
                 ref={trackRef}
                 className="flex w-max will-change-transform"
@@ -105,21 +113,24 @@ const HeroMarquee = () => {
             >
                 <div ref={contentRef} className="flex items-center">
                     {images.map((item, idx) => (
-                        <div key={idx} className="mr-8 flex flex-shrink-0 items-center gap-6">
+                        <div key={idx} className="mr-4 sm:mr-6 lg:mr-8 flex shrink-0 items-center gap-3 sm:gap-4 lg:gap-6">
                             <img
                                 src={item.large}
-                                className="h-[538px] w-[632px] rounded-2xl object-cover"
+                                className="rounded-2xl object-cover"
+                                style={{ width: 'clamp(280px, 48vw, 632px)', height: 'clamp(240px, 41vw, 538px)' }}
                                 alt="travel"
                             />
-                            <div className="flex flex-col gap-6">
+                            <div className="flex flex-col gap-3 sm:gap-4 lg:gap-6">
                                 <img
                                     src={item.small1}
-                                    className="h-[254px] w-[300px] rounded-xl object-cover"
+                                    className="rounded-xl object-cover"
+                                    style={{ width: 'clamp(140px, 22vw, 300px)', height: 'clamp(120px, 21vw, 254px)' }}
                                     alt="travel"
                                 />
                                 <img
                                     src={item.small2}
-                                    className="h-[254px] w-[300px] rounded-xl object-cover"
+                                    className="rounded-xl object-cover"
+                                    style={{ width: 'clamp(140px, 22vw, 300px)', height: 'clamp(120px, 21vw, 254px)' }}
                                     alt="travel"
                                 />
                             </div>
@@ -129,21 +140,24 @@ const HeroMarquee = () => {
 
                 <div aria-hidden="true" className="flex items-center">
                     {images.map((item, idx) => (
-                        <div key={idx} className="mr-8 flex flex-shrink-0 items-center gap-6">
+                        <div key={idx} className="mr-4 sm:mr-6 lg:mr-8 flex shrink-0 items-center gap-3 sm:gap-4 lg:gap-6">
                             <img
                                 src={item.large}
-                                className="h-[538px] w-[632px] rounded-2xl object-cover"
+                                className="rounded-2xl object-cover"
+                                style={{ width: 'clamp(280px, 48vw, 632px)', height: 'clamp(240px, 41vw, 538px)' }}
                                 alt=""
                             />
-                            <div className="flex flex-col gap-6">
+                            <div className="flex flex-col gap-3 sm:gap-4 lg:gap-6">
                                 <img
                                     src={item.small1}
-                                    className="h-[254px] w-[300px] rounded-xl object-cover"
+                                    className="rounded-xl object-cover"
+                                    style={{ width: 'clamp(140px, 22vw, 300px)', height: 'clamp(120px, 21vw, 254px)' }}
                                     alt=""
                                 />
                                 <img
                                     src={item.small2}
-                                    className="h-[254px] w-[300px] rounded-xl object-cover"
+                                    className="rounded-xl object-cover"
+                                    style={{ width: 'clamp(140px, 22vw, 300px)', height: 'clamp(120px, 21vw, 254px)' }}
                                     alt=""
                                 />
                             </div>
@@ -151,7 +165,7 @@ const HeroMarquee = () => {
                     ))}
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 };
 

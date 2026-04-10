@@ -6,6 +6,7 @@ import HomeFooter from "../components/HomeFooter";
 import Navbar from "../components/NavBar";
 import TourDetails from '../pages/TourDetails'
 import TourBookings from '../pages/TourBookings'
+import Wishlist from '../pages/Wishlist'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 
 import About from '../pages/About'
@@ -20,8 +21,7 @@ function App() {
       path: '/',
       element: <>
         <Navbar />
-        {/* Change this: wrap Outlet in a div with mt-20 or margin-top */}
-        <div style={{ marginTop: '100px', }}>
+        <div className="pt-20 sm:pt-24">
           <Outlet />
         </div>
         <HomeFooter />
@@ -31,6 +31,7 @@ function App() {
         { path: 'tour', element: <Tours /> },
         { path: 'tour/:id', element: <TourDetails /> },
         { path: 'bookings', element: <TourBookings  /> },
+        { path: 'wishlist', element: <Wishlist /> },
         { path:  'about', element: <About/> },
         { path:'contact',element: <Contact/>},
         { path: 'login', element: <Login /> },
@@ -40,9 +41,7 @@ function App() {
   ])
 
   return (
-
     <RouterProvider router={router} />
-
   )
 }
 

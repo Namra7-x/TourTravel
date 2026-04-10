@@ -3,19 +3,54 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import BtnBlue from "../components/Btn-Blue";
 
+const apiBaseUrl = (import.meta.env.VITE_API_URL ?? import.meta.env.VITE_AUTH_API_URL ?? 'http://localhost:5000/api')
+    .trim()
+    .replace(/\/+$/, '');
+
+const toTourCard = (tour) => ({
+    id: tour.id,
+    name: tour.title,
+    image: tour.images?.[0]?.url ?? '',
+    pricePerPerson: tour.discountPrice ?? tour.price,
+    duration: tour.duration,
+});
+
+const TourCardSkeleton = () => (
+    <div className="card w-90 animate-pulse rounded-3xl border border-gray-100 bg-[#F0F2F7] p-5 shadow-sm overflow-hidden">
+        <div className="aspect-video w-full rounded-3xl bg-gray-200" />
+        <div className="mt-4 space-y-4 p-2">
+            <div className="h-8 w-3/4 rounded-full bg-gray-200" />
+            <div className="flex items-center justify-between gap-8">
+                <div className="h-5 w-28 rounded-full bg-gray-200" />
+                <div className="h-5 w-20 rounded-full bg-gray-200" />
+            </div>
+            <div className="h-14 w-full rounded-full bg-gray-200" />
+        </div>
+    </div>
+);
+
 const Tours = () => {
 
     const [Tour, SetTour] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const TourData = async () => {
             try {
-                const response = await fetch('/data.json');
-                const data = await response.json();
-                SetTour(data);
-            }
-            catch {
-                console.log("error");
+                const response = await fetch(`${apiBaseUrl}/tours`);
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.message || 'Failed to load tours');
+                }
+
+                SetTour(Array.isArray(result.data) ? result.data.map(toTourCard) : []);
+                setError('');
+            } catch (fetchError) {
+                setError(fetchError.message || 'Failed to load tours');
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -56,7 +91,13 @@ const Tours = () => {
 
             <div className="Tour-wrapper flex justify-center">
                 <section className="data mt-19 grid grid-cols-3 gap-10 items-center">
-                    {
+                    {loading ? (
+                        Array.from({ length: 6 }).map((_, index) => (
+                            <TourCardSkeleton key={index} />
+                        ))
+                    ) : error ? (
+                        <p className="col-span-full text-center text-red-600">{error}</p>
+                    ) : (
                         Tour.map((Tourdata, index) => {
                             return (
                                 <motion.div 
@@ -70,7 +111,6 @@ const Tours = () => {
                                     className="card w-90 bg-[#F0F2F7] p-5 rounded-3xl border border-gray-100 shadow-sm overflow-hidden flex flex-col transition-shadow hover:shadow-xl"
                                 >
 
-                                    {/* 1. Locked Image Container */}
                                     <div className="img-container relative aspect-video w-full overflow-hidden bg-gray-100 rounded-3xl">
                                         <motion.img
                                             whileHover={{ scale: 1.1 }}
@@ -81,7 +121,6 @@ const Tours = () => {
                                         />
                                     </div>
 
-                                    {/* 2. Content Area */}
                                     <div className="info p-2 flex flex-col grow mt-4">
                                         <h1 className="text-3xl font-semibold text-[#161618] line-clamp-1 mb-3">
                                             {Tourdata.name}
@@ -97,7 +136,6 @@ const Tours = () => {
                                         </div>
                                     </div>
 
-                                    {/* 3. Link Area */}
                                     <div className="mt-5">
                                         <Link 
                                             to={`/tour/${Tourdata.id}`}  
@@ -109,7 +147,7 @@ const Tours = () => {
                                 </motion.div>
                             )
                         })
-                    }
+                    )}
                 </section>
             </div>
         </div>

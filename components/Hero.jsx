@@ -1,15 +1,9 @@
 import '../css/Hero.css';
 import BtnBlue from './Btn-Blue';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { fadeInUp, staggerContainer } from '../utils/animationVariants';
 
 const Hero = () => {
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setLoaded(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
-
     return (
         <section className="hero">
             <video autoPlay loop muted playsInline className="hero-video">
@@ -20,28 +14,37 @@ const Hero = () => {
             </video>
             <div className="overlay" />
 
-            <div className="hero-content">
-                <span className={`hero-tag ${loaded ? 'anim-in' : ''}`}>
+            <motion.div
+                className="hero-content"
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+            >
+                <motion.span className="hero-tag" variants={fadeInUp} custom={0}>
                     ✦ YOUR JOURNEY STARTS HERE
-                </span>
-                <h1 className={`hero-title ${loaded ? 'anim-in delay-1' : ''}`}>
+                </motion.span>
+                <motion.h1 className="hero-title" variants={fadeInUp} custom={1}>
                     Escape to<br />Paradise
-                </h1>
-                <p className={`hero-desc ${loaded ? 'anim-in delay-2' : ''}`}>
+                </motion.h1>
+                <motion.p className="hero-desc" variants={fadeInUp} custom={2}>
                     Ignite your wanderlust and unlock a world of possibilities.
                     From serene beaches to bustling cities, we offer travel
                     packages to suit every taste and budget.
-                </p>
-                <div className={`hero-actions ${loaded ? 'anim-in delay-3' : ''}`}>
+                </motion.p>
+                <motion.div className="hero-actions" variants={fadeInUp} custom={3}>
                     <BtnBlue title="Book a Tour" size="lg" />
                     <BtnBlue title="Learn More" variant="light" size="lg" />
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
 
-            <div className={`scroll-indicator ${loaded ? 'anim-in delay-4' : ''}`}>
+            <motion.div
+                className="scroll-indicator"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+            >
                 <div className="scroll-line" />
                 <span>SCROLL</span>
-            </div>
+            </motion.div>
         </section>
     );
 };
