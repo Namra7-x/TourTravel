@@ -85,8 +85,8 @@ const TourBookings = () => {
 
             <div className="space-y-6">
                 {bookedTour.map((tour) => (
-                    <div key={tour.id} className="grid gap-4 bg-gray-50 p-4 rounded-2xl items-start border border-gray-100 sm:grid-cols-[96px_1fr_auto] sm:items-center">
-                        <img src={tour.tour?.images?.[0]?.url ?? ''} className="w-full h-52 sm:h-24 object-cover rounded-xl" alt={tour.tour?.title ?? ''} />
+                    <div key={tour.id} className="grid gap-4 bg-gray-50 p-4 rounded-2xl items-start border border-gray-100 sm:grid-cols-[120px_1fr_auto] sm:items-center">
+                        <img src={tour.tour?.images?.[0]?.url ?? ''} className="w-full aspect-4/3 object-cover rounded-xl" alt={tour.tour?.title ?? ''} />
                         <div className="grow min-w-0">
                             <h3 className="text-xl font-semibold">{tour.tour?.title}</h3>
                             <p className="text-gray-500">{new Date(tour.date).toLocaleDateString()} · {tour.peopleCount} traveler(s)</p>

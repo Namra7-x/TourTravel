@@ -51,7 +51,7 @@ const About = () => {
     return (
         <div className="overflow-hidden">
             {/* Hero Section */}
-            <section className="pt-20 pb-20 px-20">
+            <section className="px-4 py-20 sm:px-8 lg:px-20 lg:py-24">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -61,13 +61,13 @@ const About = () => {
                 >
                     <motion.h1
                         variants={fadeInUp}
-                        className="text-6xl font-medium text-[#161618] mb-6"
+                        className="section-title mb-5 sm:mb-6"
                     >
                         Welcome to Travely
                     </motion.h1>
                     <motion.p
                         variants={fadeInUp}
-                        className="text-[#56575c] text-lg font-light leading-relaxed max-w-4xl mx-auto"
+                        className="section-copy px-2 sm:px-0"
                     >
                         We're passionate about travel and committed to creating unforgettable experiences for our clients. With years of industry experience, we've perfected the art of curating personalized journeys that inspire and delight.
                     </motion.p>
@@ -75,16 +75,16 @@ const About = () => {
             </section>
 
             {/* Content Section */}
-            <section className="py-20 px-20">
+            <section className="px-4 py-16 sm:px-8 sm:py-20 lg:px-20">
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-2 gap-16 items-center">
+                    <div className="grid gap-12 items-center lg:grid-cols-2 lg:gap-16">
                         {/* Images Grid */}
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
                             variants={staggerContainer}
-                            className="grid grid-cols-2 gap-5 w-full max-w-xl"
+                            className="grid w-full max-w-xl grid-cols-2 gap-4 mx-auto sm:gap-5 lg:mx-0"
                         >
                             {/* Top row */}
                             <motion.div
@@ -97,7 +97,7 @@ const About = () => {
                                     transition={{ duration: 0.4, ease: "easeOut" }}
                                     src={images[0].src}
                                     alt={images[0].alt}
-                                    className="w-full h-56 object-cover"
+                                    className="aspect-[4/3] w-full object-cover"
                                 />
                             </motion.div>
                             <motion.div
@@ -110,7 +110,7 @@ const About = () => {
                                     transition={{ duration: 0.4, ease: "easeOut" }}
                                     src={images[1].src}
                                     alt={images[1].alt}
-                                    className="w-full h-56 object-cover"
+                                    className="aspect-[4/3] w-full object-cover"
                                 />
                             </motion.div>
                             {/* Bottom row */}
@@ -124,7 +124,7 @@ const About = () => {
                                     transition={{ duration: 0.4, ease: "easeOut" }}
                                     src={images[2].src}
                                     alt={images[2].alt}
-                                    className="w-full h-56 object-cover"
+                                    className="aspect-[4/3] w-full object-cover"
                                 />
                             </motion.div>
                             <motion.div
@@ -137,7 +137,7 @@ const About = () => {
                                     transition={{ duration: 0.4, ease: "easeOut" }}
                                     src={images[3].src}
                                     alt={images[3].alt}
-                                    className="w-full h-56 object-cover"
+                                    className="aspect-[4/3] w-full object-cover"
                                 />
                             </motion.div>
                         </motion.div>
@@ -151,19 +151,19 @@ const About = () => {
                         >
                             <motion.h2
                                 variants={fadeInUp}
-                                className="text-5xl font-medium text-[#161618] mb-8 leading-tight"
+                                className="mb-6 text-3xl font-medium leading-tight text-[#161618] sm:mb-8 sm:text-4xl lg:text-5xl"
                             >
                                 Discover the World,<br />Redefined it!
                             </motion.h2>
                             <motion.p
                                 variants={fadeInUp}
-                                className="text-[#56575c] text-base font-light leading-relaxed mb-6"
+                                className="content-copy mb-6"
                             >
                                 Discover the World, Redefined! At our travel agency, we believe that every journey should be a unique adventure tailored just for you. With our dedicated team of travel experts, we go beyond traditional services to curate experiences that resonate with your dreams and desires. From hidden gems to iconic landmarks.
                             </motion.p>
                             <motion.p
                                 variants={fadeInUp}
-                                className="text-[#56575c] text-base font-light leading-relaxed"
+                                className="content-copy"
                             >
                                 Discover the World, Redefined! We are not just a travel agency; we are your gateway to extraordinary experiences. Our passion for travel drives us to craft personalized itineraries that reflect your interests and aspirations. With our insider knowledge and commitment to excellence.
                             </motion.p>
@@ -173,9 +173,9 @@ const About = () => {
             </section>
 
             {/* Trusted Partner Section */}
-            <section className="bg-[#f0f2f7] py-20 px-20">
+            <section className="bg-[#f0f2f7] px-4 py-16 sm:px-8 sm:py-20 lg:px-20">
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-2 gap-16 items-center">
+                    <div className="grid gap-12 items-center lg:grid-cols-2 lg:gap-16">
                         {/* Left: Text Content */}
                         <motion.div
                             initial="hidden"
@@ -185,13 +185,13 @@ const About = () => {
                         >
                             <motion.h2
                                 variants={fadeInUp}
-                                className="text-5xl font-medium text-[#161618] mb-6 leading-tight"
+                                className="mb-6 text-3xl font-medium leading-tight text-[#161618] sm:text-4xl lg:text-5xl"
                             >
                                 Your Trusted Travel<br />Partner ar Here
                             </motion.h2>
                             <motion.p
                                 variants={fadeInUp}
-                                className="text-[#56575c] text-lg font-light leading-relaxed mb-12"
+                                className="content-copy mb-8 sm:mb-12"
                             >
                                 We're more than just a travel agency, we're your trusted partner in creating unforgettable journeys. Our commitment to personalized service, expert advice, and competitive pricing sets us apart.
                             </motion.p>
@@ -199,18 +199,18 @@ const About = () => {
                             {/* Stats */}
                             <motion.div
                                 variants={fadeInUp}
-                                className="grid grid-cols-3 gap-8"
+                                className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6"
                             >
                                 <div>
-                                    <h3 className="text-4xl font-semibold text-[#558ffc] mb-2">10k+</h3>
+                                    <h3 className="mb-2 text-3xl font-semibold text-[#558ffc] sm:text-4xl">10k+</h3>
                                     <p className="text-[#56575c] font-light">Happy Travelers</p>
                                 </div>
                                 <div>
-                                    <h3 className="text-4xl font-semibold text-[#558ffc] mb-2">15+</h3>
+                                    <h3 className="mb-2 text-3xl font-semibold text-[#558ffc] sm:text-4xl">15+</h3>
                                     <p className="text-[#56575c] font-light">Years of Expertise</p>
                                 </div>
                                 <div>
-                                    <h3 className="text-4xl font-semibold text-[#558ffc] mb-2">99%</h3>
+                                    <h3 className="mb-2 text-3xl font-semibold text-[#558ffc] sm:text-4xl">99%</h3>
                                     <p className="text-[#56575c] font-light">Positive Reviews</p>
                                 </div>
                             </motion.div>

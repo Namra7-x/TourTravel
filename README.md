@@ -1,5 +1,18 @@
 # React + Vite
 
+Travely now reads its auth, bookings, wishlist, reviews, and tour catalog data from Supabase.
+
+## Supabase Setup
+
+Create a local `.env` file with:
+
+```env
+VITE_SUPABASE_URL=https://pzgasjafzjxjgljzcxov.supabase.co
+VITE_SUPABASE_ANON_KEY=sb_publishable_LQHNH__JUswn4z6iH4SUOQ_WuAH4a4K
+```
+
+The Supabase project already includes the travel catalog schema, seeded tours, demo auth user, and linked wishlist, booking, and review rows.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

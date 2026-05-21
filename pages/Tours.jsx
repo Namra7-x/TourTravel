@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import BtnBlue from "../components/Btn-Blue";
-
-const apiBaseUrl = (import.meta.env.VITE_API_URL ?? import.meta.env.VITE_AUTH_API_URL ?? 'http://localhost:5000/api')
-    .trim()
-    .replace(/\/+$/, '');
+import { getTours } from "../services/tourApi";
 
 const toTourCard = (tour) => ({
     id: tour.id,
@@ -16,7 +13,7 @@ const toTourCard = (tour) => ({
 });
 
 const TourCardSkeleton = () => (
-    <div className="card w-90 animate-pulse rounded-3xl border border-gray-100 bg-[#F0F2F7] p-5 shadow-sm overflow-hidden">
+    <div className="card w-full max-w-88 animate-pulse rounded-3xl border border-gray-100 bg-[#F0F2F7] p-5 shadow-sm overflow-hidden">
         <div className="aspect-video w-full rounded-3xl bg-gray-200" />
         <div className="mt-4 space-y-4 p-2">
             <div className="h-8 w-3/4 rounded-full bg-gray-200" />
@@ -38,12 +35,7 @@ const Tours = () => {
     useEffect(() => {
         const TourData = async () => {
             try {
-                const response = await fetch(`${apiBaseUrl}/tours`);
-                const result = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(result.message || 'Failed to load tours');
-                }
+                const result = await getTours();
 
                 SetTour(Array.isArray(result.data) ? result.data.map(toTourCard) : []);
                 setError('');
@@ -74,7 +66,7 @@ const Tours = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-5xl text-center mt-32 font-medium"
+                    className="mt-24 px-4 text-center text-4xl font-medium sm:mt-28 sm:text-5xl lg:text-6xl"
                 >
                     Your Perfect Getaway
                 </motion.h1>
@@ -83,14 +75,14 @@ const Tours = () => {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3, duration: 0.8 }}
-                    className="text-[#56575c] text-light text-xl w-[70%] m-auto text-center mt-5"
+                    className="mx-auto mt-5 w-full max-w-4xl px-4 text-center text-base font-light text-[#56575c] sm:text-lg lg:text-xl"
                 >
                     Whether you crave sandy beaches, majestic mountains, bustling cities, or serene forests, we bring you the best destinations from around the globe. Start your journey here and discover your dream getaway.
                 </motion.p>
             </header>
 
-            <div className="Tour-wrapper flex justify-center">
-                <section className="data mt-19 grid grid-cols-3 gap-10 items-center">
+            <div className="Tour-wrapper flex justify-center px-4 sm:px-6 lg:px-10">
+                <section className="data mt-12 grid w-full max-w-7xl items-stretch justify-items-center gap-6 sm:grid-cols-2 xl:grid-cols-3 xl:gap-8">
                     {loading ? (
                         Array.from({ length: 6 }).map((_, index) => (
                             <TourCardSkeleton key={index} />
@@ -108,7 +100,7 @@ const Tours = () => {
                                     viewport={{ once: true, margin: "-50px" }}
                                     transition={{ delay: (index % 3) * 0.1 }}
                                     whileHover={{ y: -10 }}
-                                    className="card w-90 bg-[#F0F2F7] p-5 rounded-3xl border border-gray-100 shadow-sm overflow-hidden flex flex-col transition-shadow hover:shadow-xl"
+                                    className="card mx-auto w-full max-w-104 bg-[#F0F2F7] p-5 rounded-3xl border border-gray-100 shadow-sm overflow-hidden flex flex-col transition-shadow hover:shadow-xl"
                                 >
 
                                     <div className="img-container relative aspect-video w-full overflow-hidden bg-gray-100 rounded-3xl">
@@ -122,11 +114,11 @@ const Tours = () => {
                                     </div>
 
                                     <div className="info p-2 flex flex-col grow mt-4">
-                                        <h1 className="text-3xl font-semibold text-[#161618] line-clamp-1 mb-3">
+                                        <h1 className="mb-3 text-2xl font-semibold leading-tight text-[#161618] line-clamp-1 sm:text-3xl">
                                             {Tourdata.name}
                                         </h1>
 
-                                        <div className="price-days text-[1rem] text-[#56575c] flex justify-between gap-8 items-center ">
+                                        <div className="price-days flex flex-col gap-2 text-sm text-[#56575c] sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:text-[1rem]">
                                             <p className=" font-medium text-gray-500">
                                                 <span className="font-bold text-lg">${Tourdata.pricePerPerson}</span>/Per person
                                             </p>

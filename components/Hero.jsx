@@ -21,7 +21,7 @@ const Hero = () => {
                 animate="visible"
             >
                 <motion.span className="hero-tag" variants={fadeInUp} custom={0}>
-                    ✦ YOUR JOURNEY STARTS HERE
+                    YOUR JOURNEY STARTS HERE
                 </motion.span>
                 <motion.h1 className="hero-title" variants={fadeInUp} custom={1}>
                     Escape to<br />Paradise

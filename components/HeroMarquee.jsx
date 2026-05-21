@@ -5,6 +5,8 @@ import { fadeInUp } from '../utils/animationVariants';
 const HeroMarquee = () => {
     const trackRef = useRef(null);
     const contentRef = useRef(null);
+    const cardHeight = 'clamp(260px, 50vw, 560px)';
+    const largeWidth = 'clamp(300px, 56vw, 760px)';
 
     const images = [
         {
@@ -113,54 +115,36 @@ const HeroMarquee = () => {
             >
                 <div ref={contentRef} className="flex items-center">
                     {images.map((item, idx) => (
-                        <div key={idx} className="mr-4 sm:mr-6 lg:mr-8 flex shrink-0 items-center gap-3 sm:gap-4 lg:gap-6">
+                        <div
+                            key={idx}
+                            className="mr-4 flex shrink-0 items-stretch sm:mr-6 lg:mr-8"
+                            style={{ height: cardHeight, width: largeWidth }}
+                        >
                             <img
                                 src={item.large}
-                                className="rounded-2xl object-cover"
-                                style={{ width: 'clamp(280px, 48vw, 632px)', height: 'clamp(240px, 41vw, 538px)' }}
+                                className="h-full w-full min-h-0 rounded-2xl object-cover"
+                                style={{ display: 'block', objectPosition: 'center' }}
                                 alt="travel"
+                                loading="lazy"
                             />
-                            <div className="flex flex-col gap-3 sm:gap-4 lg:gap-6">
-                                <img
-                                    src={item.small1}
-                                    className="rounded-xl object-cover"
-                                    style={{ width: 'clamp(140px, 22vw, 300px)', height: 'clamp(120px, 21vw, 254px)' }}
-                                    alt="travel"
-                                />
-                                <img
-                                    src={item.small2}
-                                    className="rounded-xl object-cover"
-                                    style={{ width: 'clamp(140px, 22vw, 300px)', height: 'clamp(120px, 21vw, 254px)' }}
-                                    alt="travel"
-                                />
-                            </div>
                         </div>
                     ))}
                 </div>
 
                 <div aria-hidden="true" className="flex items-center">
                     {images.map((item, idx) => (
-                        <div key={idx} className="mr-4 sm:mr-6 lg:mr-8 flex shrink-0 items-center gap-3 sm:gap-4 lg:gap-6">
+                        <div
+                            key={idx}
+                            className="mr-4 flex shrink-0 items-stretch sm:mr-6 lg:mr-8"
+                            style={{ height: cardHeight, width: largeWidth }}
+                        >
                             <img
                                 src={item.large}
-                                className="rounded-2xl object-cover"
-                                style={{ width: 'clamp(280px, 48vw, 632px)', height: 'clamp(240px, 41vw, 538px)' }}
+                                className="h-full w-full min-h-0 rounded-2xl object-cover"
+                                style={{ display: 'block', objectPosition: 'center' }}
                                 alt=""
+                                loading="lazy"
                             />
-                            <div className="flex flex-col gap-3 sm:gap-4 lg:gap-6">
-                                <img
-                                    src={item.small1}
-                                    className="rounded-xl object-cover"
-                                    style={{ width: 'clamp(140px, 22vw, 300px)', height: 'clamp(120px, 21vw, 254px)' }}
-                                    alt=""
-                                />
-                                <img
-                                    src={item.small2}
-                                    className="rounded-xl object-cover"
-                                    style={{ width: 'clamp(140px, 22vw, 300px)', height: 'clamp(120px, 21vw, 254px)' }}
-                                    alt=""
-                                />
-                            </div>
                         </div>
                     ))}
                 </div>

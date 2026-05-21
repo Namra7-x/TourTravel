@@ -1,65 +1,139 @@
-const normalizeBaseUrl = (value = '') => value.trim().replace(/\/+$/, '');
+import { getSupabaseClient } from './supabaseClient';
+import { mapBookingRow, normalizeSupabaseError } from './supabaseHelpers';
 
-const apiBaseUrl = normalizeBaseUrl(
-    import.meta.env.VITE_API_URL ?? import.meta.env.VITE_AUTH_API_URL ?? 'http://localhost:5000/api',
-);
+const bookingSelect = `
+    id,
+    user_id,
+    tour_id,
+    date,
+    people_count,
+    total_price,
+    payment_status,
+    booking_status,
+    created_at,
+    tour:tours (
+        id,
+        title,
+        location,
+        country,
+        price,
+        discount_price,
+        duration,
+        nights,
+        max_group_size,
+        rating,
+        total_reviews,
+        overview,
+        description,
+        category,
+        best_time_to_visit,
+        tour_type,
+        destinations,
+        highlights,
+        inclusions,
+        exclusions,
+        created_at,
+        tour_images (
+            id,
+            url,
+            created_at
+        )
+    )
+`;
 
-const readJson = async (response) => {
-    try {
-        return await response.json();
-    } catch {
-        return {};
+const requireSessionUser = async (supabase) => {
+    const { data, error } = await supabase.auth.getUser();
+
+    if (error) {
+        throw normalizeSupabaseError(error, 'Please log in to continue');
     }
+
+    if (!data.user) {
+        throw new Error('Please log in to continue');
+    }
+
+    return data.user;
 };
 
-export const createBooking = async ({ tourId, date, peopleCount, token }) => {
-    const response = await fetch(`${apiBaseUrl}/bookings`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ tourId, date, peopleCount: Number(peopleCount) }),
-    });
+const fetchBookingById = async (supabase, bookingId, fallbackMessage) => {
+    const { data, error } = await supabase
+        .from('bookings')
+        .select(bookingSelect)
+        .eq('id', bookingId)
+        .single();
 
-    const data = await readJson(response);
-
-    if (!response.ok) {
-        throw new Error(data.message || 'Failed to create booking');
+    if (error) {
+        throw normalizeSupabaseError(error, fallbackMessage);
     }
 
-    return data;
+    if (!data) {
+        throw new Error(fallbackMessage);
+    }
+
+    return mapBookingRow(data);
 };
 
-export const getBookings = async (token) => {
-    const response = await fetch(`${apiBaseUrl}/bookings`, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
+export const createBooking = async ({ tourId, date, peopleCount, token: _token } = {}) => {
+    const supabase = getSupabaseClient();
+    await requireSessionUser(supabase);
+
+    const { data, error } = await supabase.rpc('create_booking', {
+        p_tour_id: tourId,
+        p_date: date,
+        p_people_count: Number(peopleCount),
     });
 
-    const data = await readJson(response);
-
-    if (!response.ok) {
-        throw new Error(data.message || 'Failed to load bookings');
+    if (error) {
+        throw normalizeSupabaseError(error, 'Failed to create booking');
     }
 
-    return data;
+    if (!data?.id) {
+        throw new Error('Failed to create booking');
+    }
+
+    return {
+        status: 'success',
+        data: await fetchBookingById(supabase, data.id, 'Failed to create booking'),
+    };
 };
 
-export const payBooking = async ({ bookingId, token }) => {
-    const response = await fetch(`${apiBaseUrl}/bookings/${bookingId}/pay`, {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    });
+export const getBookings = async (_token) => {
+    const supabase = getSupabaseClient();
+    await requireSessionUser(supabase);
 
-    const data = await readJson(response);
+    const { data, error } = await supabase
+        .from('bookings')
+        .select(bookingSelect)
+        .order('created_at', { ascending: false });
 
-    if (!response.ok) {
-        throw new Error(data.message || 'Failed to confirm booking payment');
+    if (error) {
+        throw normalizeSupabaseError(error, 'Failed to load bookings');
     }
 
-    return data;
+    return {
+        status: 'success',
+        data: (data ?? []).map(mapBookingRow),
+    };
+};
+
+export const payBooking = async ({ bookingId, token: _token } = {}) => {
+    const supabase = getSupabaseClient();
+    await requireSessionUser(supabase);
+
+    const { data, error } = await supabase.rpc('pay_booking', {
+        p_booking_id: bookingId,
+    });
+
+    if (error) {
+        throw normalizeSupabaseError(error, 'Failed to confirm booking payment');
+    }
+
+    if (!data?.id) {
+        throw new Error('Failed to confirm booking payment');
+    }
+
+    return {
+        status: 'success',
+        data: await fetchBookingById(supabase, data.id, 'Failed to confirm booking payment'),
+    };
 };

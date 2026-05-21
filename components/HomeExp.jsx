@@ -56,7 +56,11 @@ const HomeExp = ({ videoSrc = "https://framerusercontent.com/assets/vcDo4jaVBqJX
 
     // Initialize Swiper after component mounts
     useEffect(() => {
-        swiperRef.current = new Swiper('.mySwiper', {
+        if (typeof window === "undefined" || typeof window.Swiper === "undefined") {
+            return undefined;
+        }
+
+        const swiper = new window.Swiper('.mySwiper', {
             slidesPerView: 1,
             spaceBetween: 16,
             autoplay: {
@@ -75,6 +79,13 @@ const HomeExp = ({ videoSrc = "https://framerusercontent.com/assets/vcDo4jaVBqJX
                 },
             },
         });
+
+        swiperRef.current = swiper;
+
+        return () => {
+            swiper.destroy(true, true);
+            swiperRef.current = null;
+        };
     }, []);
 
     const goNext = () => {
@@ -189,14 +200,14 @@ const HomeExp = ({ videoSrc = "https://framerusercontent.com/assets/vcDo4jaVBqJX
                 </motion.div>
             </motion.section>
             <motion.section
-                className="relative mt-8 sm:mt-12"
+                className="relative mt-8 overflow-hidden rounded-4xl bg-black sm:mt-12"
                 variants={fadeInUp}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
             >
                 <motion.video
-                    className="w-full"
+                    className="aspect-4/3 w-full object-cover sm:aspect-video"
                     src={videoSrc}
                     autoPlay
                     loop
@@ -209,7 +220,7 @@ const HomeExp = ({ videoSrc = "https://framerusercontent.com/assets/vcDo4jaVBqJX
                 />
 
                 <motion.h1
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 text-center text-white text-2xl sm:text-4xl lg:text-6xl leading-tight max-w-4xl"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 text-center text-white text-xl sm:text-4xl lg:text-6xl leading-tight max-w-4xl"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.2 }}

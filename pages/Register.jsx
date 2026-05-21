@@ -33,7 +33,7 @@ const Register = () => {
             });
             const session = extractSession(responseData);
 
-            if (session.user || session.token) {
+            if (session.token) {
                 setAuth({
                     user: session.user ?? { name: formData.name, email: formData.email },
                     token: session.token,
@@ -45,7 +45,9 @@ const Register = () => {
             setStatus({
                 loading: false,
                 error: '',
-                success: responseData.message || 'Account created. You can sign in now.',
+                success:
+                    responseData.message ||
+                    `Account created for ${formData.email}. Check your email to confirm your account before signing in.`,
             });
             return;
         } catch (error) {
@@ -59,20 +61,20 @@ const Register = () => {
     };
 
     return (
-        <div className="relative overflow-hidden bg-[#f7f8fc] py-16">
+        <div className="relative overflow-hidden bg-[#f7f8fc] py-12 sm:py-16">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(85,143,252,0.16),transparent_32%),radial-gradient(circle_at_bottom_left,rgba(22,22,24,0.1),transparent_34%)]" />
 
-            <div className="relative mx-auto grid min-h-[calc(100vh-120px)] max-w-6xl items-center gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-10">
+            <div className="relative mx-auto grid min-h-0 max-w-6xl items-start gap-10 px-4 sm:px-6 lg:min-h-[calc(100svh-120px)] lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:items-center">
                 <motion.section
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="order-2 rounded-4xl border border-gray-100 bg-white p-8 shadow-[0_30px_80px_rgba(22,22,24,0.08)] lg:order-1 lg:p-10"
+                    className="order-2 rounded-2xl border border-gray-100 bg-white p-4 shadow-[0_30px_80px_rgba(22,22,24,0.08)] sm:rounded-[2rem] sm:p-8 lg:order-1 lg:p-10"
                 >
                     <div className="mb-8 space-y-3">
-                        <h2 className="text-3xl font-semibold text-[#161618]">Create your account</h2>
-                        <p className="text-[#56575c]">
-                            Register against your backend API and store the returned session for the travel dashboard.
+                        <h2 className="text-2xl font-semibold text-[#161618] sm:text-3xl">Create your account</h2>
+                        <p className="content-copy">
+                            Sign up with email and password. If email confirmation is enabled, Supabase will send a confirmation link before the first sign in.
                         </p>
                     </div>
 
@@ -163,17 +165,17 @@ const Register = () => {
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-                    className="order-1 space-y-8 rounded-4xl border border-[#dfe7ff] bg-[linear-gradient(160deg,#558ffc_0%,#7c9ff8_55%,#161618_100%)] p-8 text-white shadow-2xl shadow-slate-900/10 lg:order-2 lg:p-12"
+                    className="order-1 space-y-6 rounded-2xl border border-[#dfe7ff] bg-[linear-gradient(160deg,#558ffc_0%,#7c9ff8_55%,#161618_100%)] p-4 text-white shadow-2xl shadow-slate-900/10 sm:space-y-8 sm:rounded-[2rem] sm:p-8 lg:order-2 lg:p-12"
                 >
                     <div className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white/80">
                         New traveler account
                     </div>
 
                     <div className="space-y-5">
-                        <h1 className="max-w-xl text-5xl font-semibold leading-tight tracking-tight lg:text-6xl">
+                        <h1 className="max-w-xl text-2xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
                             Set up your travel profile in a few steps.
                         </h1>
-                        <p className="max-w-xl text-lg leading-8 text-white/75">
+                        <p className="max-w-xl text-sm leading-6 text-white/75 sm:text-base sm:leading-7">
                             This form is ready to point at your backend register endpoint. You can store JWT, cookie sessions, or user data after the API responds.
                         </p>
                     </div>

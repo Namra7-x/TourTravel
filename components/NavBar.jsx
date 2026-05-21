@@ -71,18 +71,18 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-gradient-to-b from-white/80 via-white/75 to-white/60 backdrop-blur-lg">
+        <nav className="fixed top-0 left-0 right-0 z-50 w-full overflow-hidden bg-linear-to-b from-white/80 via-white/75 to-white/60 backdrop-blur-lg">
             <div className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="py-5 sm:py-6">
                     {/* Desktop Navbar Container */}
                     <div className="max-w-7xl mx-auto">
                         <div className="flex items-center justify-between h-16 rounded-full bg-white/90 backdrop-blur-xl border border-white/30 px-6 sm:px-8 shadow-sm">
                             {/* Logo */}
-                            <Link to="/" className="flex-shrink-0 transition-transform hover:scale-105">
+                            <Link to="/" className="min-w-0 shrink-0 transition-transform hover:scale-105">
                                 <img
                                     src="https://framerusercontent.com/images/0xjCt9oWtBBHoD9FZPCZLnKfgjo.png"
                                     alt="Travely"
-                                    className="h-7 w-auto"
+                                    className="h-6 w-20 max-w-full object-contain sm:h-7 sm:w-28"
                                 />
                             </Link>
 

@@ -25,7 +25,7 @@ const HomeTrustedPartner = () => {
                             variants={slideInFromLeft}
                             initial="hidden"
                             animate={inView ? "visible" : "hidden"}
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ scale: 1.02 }}
                             transition={{ duration: 0.5 }}
                         >
                             <img 
@@ -74,7 +74,7 @@ const HomeTrustedPartner = () => {
                                         }}
                                     >
                                         <motion.h2
-                                            className="text-4xl font-semibold text-[#558ffc] mb-2"
+                                            className="text-3xl font-semibold text-[#558ffc] mb-2 leading-none sm:text-4xl"
                                             initial={{ scale: 0.8 }}
                                             animate={inView ? { scale: 1 } : { scale: 0.8 }}
                                             transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}

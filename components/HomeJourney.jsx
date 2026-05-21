@@ -50,7 +50,7 @@ const HomeJourney = () => {
                                 custom={index}
                                 variants={scaleIn}
                                 whileHover={{
-                                    y: -12,
+                                    y: -10,
                                     boxShadow: "0 20px 40px rgba(0, 0, 0, 0.12)",
                                     transition: { duration: 0.3 },
                                 }}
@@ -59,12 +59,12 @@ const HomeJourney = () => {
                                 <motion.img
                                     src={item.img}
                                     alt={item.head}
-                                    className="w-full h-auto rounded-2xl"
+                                    className="w-full aspect-[4/3] rounded-2xl object-cover"
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.4 }}
                                 />
-                                <h1 className="font-medium text-2xl sm:text-3xl my-3">{item.head}</h1>
-                                <p className="font-light mt-4 text-[rgb(86,87,92)] leading-relaxed">{item.info}</p>
+                                <h1 className="font-medium text-xl leading-tight my-3 sm:text-2xl lg:text-3xl">{item.head}</h1>
+                                <p className="font-light mt-4 text-sm leading-relaxed text-[rgb(86,87,92)] sm:text-base">{item.info}</p>
                             </motion.div>
                         );
                     })}

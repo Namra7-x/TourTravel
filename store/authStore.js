@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { getSupabaseClient } from '../services/supabaseClient';
 
 const STORAGE_KEY = 'travely-auth';
 
@@ -59,6 +60,12 @@ const useAuthStore = create((set) => ({
         });
     },
     logout: () => {
+        try {
+            void getSupabaseClient().auth.signOut();
+        } catch {
+            // Supabase may not be configured during local development.
+        }
+
         clearStoredAuth();
 
         set({

@@ -1,7 +1,8 @@
 .hero {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100svh;
+    height: auto;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -136,7 +137,7 @@
 
 @media (max-width: 768px) {
     .hero {
-        padding: 7rem 0 5rem;
+        padding: 6.5rem 0 5rem;
     }
 
     .hero-content {
@@ -165,11 +166,11 @@
 
 @media (max-width: 420px) {
     .hero-title {
-        font-size: clamp(2.5rem, 15vw, 3.4rem);
+        font-size: clamp(2.4rem, 14vw, 3.3rem);
     }
 
     .hero-desc {
-        font-size: 0.98rem;
+        font-size: 0.96rem;
         margin-top: 1.5rem;
     }
 }

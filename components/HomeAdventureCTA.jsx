@@ -18,7 +18,8 @@ const HomeAdventureCTA = () => {
       animate={inView ? "visible" : "hidden"}
     >
       <motion.div
-        className="relative max-w-7xl mx-auto min-h-[420px] sm:min-h-[520px] lg:aspect-[1140/578] rounded-3xl overflow-hidden"
+        className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-3xl"
+        style={{ minHeight: 'clamp(300px, 42vh, 520px)' }}
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.5 }}
       >
@@ -27,21 +28,23 @@ const HomeAdventureCTA = () => {
             src="https://framerusercontent.com/images/UqwbnrbwQ7sNsDpw7kihreAsBc.png?scale-down-to=2048"
             className="w-full h-full object-cover"
             alt="Adventure"
-            initial={{ scale: 1.1 }}
-            animate={inView ? { scale: 1 } : { scale: 1.1 }}
+            loading="lazy"
+            style={{ objectPosition: 'center center', display: 'block', width: '100%', height: '100%' }}
+            initial={{ scale: 1.05 }}
+            animate={inView ? { scale: 1 } : { scale: 1.05 }}
             transition={{ duration: 0.8 }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/15 to-black/5"></div>
+          <div className="absolute inset-0 bg-linear-to-b from-black/10 via-black/15 to-black/5"></div>
         </div>
 
         <motion.div
-          className="relative z-10 flex flex-col items-center justify-center text-center h-full px-5 sm:px-8 py-14 sm:py-16"
+          className="relative z-10 flex h-full min-w-0 flex-col items-center justify-center px-5 py-10 text-center sm:px-8 sm:py-14 lg:px-14"
           variants={staggerContainer}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-6xl font-medium text-white mb-5 sm:mb-6 leading-tight max-w-4xl"
+            className="mb-4 max-w-2xl break-words text-xl font-medium leading-tight text-white sm:mb-6 sm:max-w-4xl sm:text-4xl md:text-5xl lg:text-6xl"
             variants={fadeInUp}
             custom={0}
           >
@@ -49,7 +52,7 @@ const HomeAdventureCTA = () => {
           </motion.h1>
 
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-12 max-w-3xl leading-relaxed"
+            className="mb-7 max-w-xl break-words text-xs leading-snug text-white/90 sm:mb-12 sm:max-w-3xl sm:text-base sm:leading-relaxed md:text-lg lg:text-xl"
             variants={fadeInUp}
             custom={1}
           >
@@ -65,7 +68,7 @@ const HomeAdventureCTA = () => {
           >
             <BtnBlue
               title="Join a Moment"
-              size="lg"
+              size="sm"
               className="bg-[#558ffc] text-white hover:bg-black"
             />
           </motion.div>

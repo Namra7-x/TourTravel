@@ -5,10 +5,7 @@ import useAuthStore from "../store/authStore";
 import { addToWishlist } from "../services/wishlistApi";
 import { createBooking } from "../services/bookingApi";
 import { createReview, getReviewsByTour } from "../services/reviewApi";
-
-const apiBaseUrl = (import.meta.env.VITE_API_URL ?? import.meta.env.VITE_AUTH_API_URL ?? 'http://localhost:5000/api')
-    .trim()
-    .replace(/\/+$/, '');
+import { getTourById } from "../services/tourApi";
 
 const toTourDetails = (tour) => ({
     id: tour.id,
@@ -124,12 +121,7 @@ const TourDetails = () => {
     const token = useAuthStore((state) => state.token);
 
     const loadTour = async () => {
-        const response = await fetch(`${apiBaseUrl}/tours/${id}`);
-        const result = await response.json();
-
-        if (!response.ok) {
-            throw new Error(result.message || 'Failed to load tour');
-        }
+        const result = await getTourById(id);
 
         setTour(toTourDetails(result.data));
     };
@@ -277,11 +269,11 @@ const TourDetails = () => {
                 ) : Tour ?
                     <>
                         <div className="details max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:p-8">
-                            <h1 className="text-4xl font-semibold text-center mb-4 sm:text-5xl lg:text-[3.5rem]">{Tour.name}</h1>
-                            <p className="text-center text-[#56575c] text-base sm:text-lg lg:text-[1.4rem] max-w-3xl mx-auto leading-relaxed mb-8">{Tour.description}</p>
+                            <h1 className="mb-4 text-center text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">{Tour.name}</h1>
+                            <p className="mx-auto mb-8 max-w-4xl text-center text-sm leading-relaxed text-[#56575c] sm:text-base lg:text-lg">{Tour.description}</p>
                             
-                            <div className="image flex justify-center mt-6">
-                                <img src={Tour.image} className="w-full max-h-128 object-cover rounded-3xl shadow-lg" alt={Tour.name} />
+                            <div className="image mt-6 overflow-hidden rounded-3xl shadow-lg">
+                                <img src={Tour.image} className="aspect-video h-full w-full object-cover" alt={Tour.name} />
                             </div>
 
                             <div className="mt-12 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
@@ -343,8 +335,8 @@ const TourDetails = () => {
 
                             <div className="pricing-footer text-center mt-16 sm:mt-20 p-6 sm:p-10 border-t border-gray-100">
                                 <p className="text-xl sm:text-2xl text-gray-500">Price per person</p>
-                                <h2 className="text-4xl sm:text-5xl font-bold text-[#161618] mt-2">${Tour.pricePerPerson}</h2>
-                                <p className="text-blue-600 font-semibold mt-4 text-xl">{Tour.tag}</p>
+                                <h2 className="mt-2 text-3xl font-bold text-[#161618] sm:text-4xl">${Tour.pricePerPerson}</h2>
+                                <p className="mt-4 text-lg font-semibold text-blue-600 sm:text-xl">{Tour.tag}</p>
                                 <p className="mt-3 text-sm text-[#56575c]">Max group size: {Tour.maxGroupSize}</p>
                                 <div className="mt-5 flex flex-col items-center gap-2">
                                     <Stars rating={Tour.rating} />

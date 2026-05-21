@@ -1,43 +1,87 @@
-const normalizeBaseUrl = (value = '') => value.trim().replace(/\/+$/, '');
+import { getSupabaseClient } from './supabaseClient';
+import { mapAuthUser, mapReviewRow, normalizeSupabaseError } from './supabaseHelpers';
 
-const apiBaseUrl = normalizeBaseUrl(
-    import.meta.env.VITE_API_URL ?? import.meta.env.VITE_AUTH_API_URL ?? 'http://localhost:5000/api',
-);
+const reviewSelect = 'id, user_id, tour_id, rating, comment, created_at';
 
-const readJson = async (response) => {
-    try {
-        return await response.json();
-    } catch {
-        return {};
+const requireSessionUser = async (supabase) => {
+    const { data, error } = await supabase.auth.getUser();
+
+    if (error) {
+        throw normalizeSupabaseError(error, 'Please log in to continue');
     }
+
+    if (!data.user) {
+        throw new Error('Please log in to continue');
+    }
+
+    return data.user;
+};
+
+const loadReviewProfiles = async (supabase, userIds) => {
+    if (userIds.length === 0) {
+        return new Map();
+    }
+
+    const { data, error } = await supabase
+        .from('review_profiles')
+        .select('id, name, created_at')
+        .in('id', userIds);
+
+    if (error) {
+        if (error.code === '42P01') {
+            return new Map();
+        }
+
+        throw normalizeSupabaseError(error, 'Failed to load reviewer details');
+    }
+
+    return new Map((data ?? []).map((profile) => [profile.id, profile]));
 };
 
 export const getReviewsByTour = async (tourId) => {
-    const response = await fetch(`${apiBaseUrl}/reviews/${tourId}`);
-    const data = await readJson(response);
+    const supabase = getSupabaseClient();
+    const { data, error } = await supabase
+        .from('reviews')
+        .select(reviewSelect)
+        .eq('tour_id', tourId)
+        .order('created_at', { ascending: false });
 
-    if (!response.ok) {
-        throw new Error(data.message || 'Failed to load reviews');
+    if (error) {
+        throw normalizeSupabaseError(error, 'Failed to load reviews');
     }
 
-    return data;
+    const reviews = data ?? [];
+    const profilesById = await loadReviewProfiles(
+        supabase,
+        [...new Set(reviews.map((review) => review.user_id).filter(Boolean))],
+    );
+
+    return {
+        status: 'success',
+        data: reviews.map((review) => mapReviewRow(review, profilesById.get(review.user_id) ?? null)),
+    };
 };
 
-export const createReview = async ({ tourId, rating, comment, token }) => {
-    const response = await fetch(`${apiBaseUrl}/reviews`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ tourId, rating: Number(rating), comment }),
+export const createReview = async ({ tourId, rating, comment, token: _token } = {}) => {
+    const supabase = getSupabaseClient();
+    const user = await requireSessionUser(supabase);
+
+    const { data, error } = await supabase.rpc('create_review', {
+        p_tour_id: tourId,
+        p_rating: Number(rating),
+        p_comment: comment,
     });
 
-    const data = await readJson(response);
-
-    if (!response.ok) {
-        throw new Error(data.message || 'Failed to submit review');
+    if (error) {
+        throw normalizeSupabaseError(error, 'Failed to submit review');
     }
 
-    return data;
+    if (!data?.id) {
+        throw new Error('Failed to submit review');
+    }
+
+    return {
+        status: 'success',
+        data: mapReviewRow(data, mapAuthUser(user)),
+    };
 };
